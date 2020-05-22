@@ -1,10 +1,35 @@
 import React from 'react';
 
+import { Hats, Jackets, Mens, Sneakers, Womens } from './../../assets/images/js/HomePageImages.component';
+
 import './MenuItem.styles.css';
 
 const MenuItem = (props) => {
+    let bgImage = null;
+    switch(props.imageUrl) {
+        case 'Hats':
+            bgImage = Hats;
+            break;
+        case 'Jackets':
+            bgImage = Jackets;
+            break;
+        case 'Mens':
+            bgImage = Mens;
+            break;
+        case 'Sneakers':
+            bgImage = Sneakers;
+            break;
+        case 'Womens':
+            bgImage = Womens;
+            break;
+        default:
+            bgImage = null;
+            break;
+    }
     return(
-        <div className = "MenuItem" style = {{ background : `url('https://i.ibb.co/cvpntL1/hats.png')` }}>
+        // <div className = {`${props.size} MenuItem`} style = {{ background : `url('${props.imageUrl}')` }}>
+        
+        <div className = {`${props.size} MenuItem`} style = {{ background : `url('${bgImage}')` }}>
 
             <div className = "Content">
 

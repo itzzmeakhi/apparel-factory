@@ -11,6 +11,10 @@
     margin: 0 7.5px 15px;
 }
 
+.MenuItem.large {
+    height: 380px;
+}
+
 .MenuItem:first-child {
     margin-right: 7.5px;
 }
