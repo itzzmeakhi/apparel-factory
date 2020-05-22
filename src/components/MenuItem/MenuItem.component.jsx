@@ -29,13 +29,14 @@ const MenuItem = (props) => {
     return(
         // <div className = {`${props.size} MenuItem`} style = {{ background : `url('${props.imageUrl}')` }}>
         
-        <div className = {`${props.size} MenuItem`} style = {{ background : `url('${bgImage}')` }}>
+        <div className = {`${props.size} MenuItem`}>
+
+            <div className = "BackgroundImage" style = {{ background : `url('${bgImage}')` }}></div>
 
             <div className = "Content">
 
-                <h1 className = "Title"> {props.title} </h1>
+                <h1 className = "Title"> {props.title.toUpperCase()} </h1>
                 <span className = "Subtitle"> SHOP NOW </span>
-                <p> {props.imageUrl} </p>
 
             </div>
 
