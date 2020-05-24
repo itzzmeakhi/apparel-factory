@@ -1,10 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 import { Hats, Jackets, Mens, Sneakers, Womens } from './../../assets/images/js/HomePageImages.component';
 
 import './MenuItem.styles.css';
 
 const MenuItem = (props) => {
+    console.log(props);
     let bgImage = null;
     switch(props.imageUrl) {
         case 'Hats':
@@ -44,4 +46,4 @@ const MenuItem = (props) => {
     )
 }
 
-export default MenuItem;
+export default withRouter(MenuItem);
