@@ -1,0 +1,26 @@
+.Header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 70px;
+    width: 100%;
+}
+
+.ImageContainer {
+    height: 100%;
+    width: 70px;
+    padding: 10px;
+}
+
+.OptionsContainer {
+    height: 100%;
+    width: 50%;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.Option {
+    padding: 0 20px;
+}
