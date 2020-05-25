@@ -6,7 +6,7 @@ import { Hats, Jackets, Mens, Sneakers, Womens } from './../../assets/images/js/
 import './MenuItem.styles.css';
 
 const MenuItem = (props) => {
-    console.log(props);
+    // console.log(props);
     let bgImage = null;
     switch(props.imageUrl) {
         case 'Hats':
