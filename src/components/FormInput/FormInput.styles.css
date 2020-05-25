@@ -1,0 +1,38 @@
+.FormInput {
+    margin: 20px 0;
+}
+
+input {
+    border: transparent;
+    border-bottom: 1px solid #353b48;
+    padding: 10px 0px;
+    font-size: 20px;
+}
+
+label {
+    display: block;
+    font-size: 20px;
+}
+
+input:focus,
+input:active {
+    outline: none;
+    box-shadow: none;
+}
+
+::-webkit-input-placeholder { 
+    opacity: 0;
+}
+
+input:focus::-webkit-input-placeholder {
+    opacity: 1;
+}
+
+input:placeholder-shown + label {
+    transform: translate(0, -35px);
+}
+
+input:not(:placeholder-shown) + label,
+input:focus + label {
+    transform: scale(0.8) translate(-160px, 0);
+}
