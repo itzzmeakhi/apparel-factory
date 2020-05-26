@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import FormInput from './../FormInput/FormInput.component';
+import Button from './../Button/Button.component';
 
 import './SignIn.styles.css';
 
@@ -52,7 +53,7 @@ class SignIn extends Component {
                         label = "Password"
                         placeholder = "Your Password" />
 
-                    <button type = "submit"> LOGIN </button>
+                    <Button type = "submit"> LOGIN </Button>
 
                 </form>
 
