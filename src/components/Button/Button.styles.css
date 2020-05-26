@@ -1,5 +1,6 @@
 .Button {
-    padding: 12px 25px;
+    width: 150px;
+    height: 50px;
     border: none;
     background-color: #000;
     color: #fff;

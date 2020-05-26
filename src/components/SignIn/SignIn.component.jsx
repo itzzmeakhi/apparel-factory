@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import FormInput from './../FormInput/FormInput.component';
 import Button from './../Button/Button.component';
+import {signInWithGoogle} from './../../firebase/firebase.utils';
 
 import './SignIn.styles.css';
 
@@ -53,7 +54,13 @@ class SignIn extends Component {
                         label = "Password"
                         placeholder = "Your Password" />
 
-                    <Button type = "submit"> LOGIN </Button>
+                    <div className = "ButtonsContainer">
+
+                        <Button type = "submit"> LOGIN </Button>
+
+                        <Button type = "button" onClick = {signInWithGoogle}>Sign in with Google</Button>
+
+                    </div>
 
                 </form>
 
