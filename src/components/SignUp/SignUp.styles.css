@@ -1,0 +1,9 @@
+.SignUp {
+    width: 380px;
+}
+
+.ButtonsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

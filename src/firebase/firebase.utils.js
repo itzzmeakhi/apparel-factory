@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
+// Firebase Configuration
 
 const firebaseConfig = {
     apiKey: "AIzaSyCr9GSAK_4Tf7mlE7MQYSLM8qH1PwvjcLA",
@@ -13,13 +14,60 @@ const firebaseConfig = {
     appId: "1:461677521971:web:206b8cb3968435ec6a8746"
   };
 
-  firebase.initializeApp(firebaseConfig);
+  // Storing User signedUp date in firestore
 
-  export const auth = firebase.auth();
-  export const firestore = firebase.firestore();
+  export const createUserProfileDocument = async(authData, additionalData) => {
+    if(!authData) return;
+
+    //console.log(firestore.doc('users/122iidsidnm'));
+
+    const userRef = firestore.doc(`users/${authData.uid}`);
+
+    // console.log(userRef);
+
+    const snapshot = await userRef.get();
+
+    // console.log(snapshot);
+
+    if(!snapshot.exists) {
+      const { displayName, email, uid } = authData;
+      const createdOn = new Date();
+
+      try {
+        // userRef.set({
+        //   displayName,
+        //   email,
+        //   uid,
+        //   createdOn,
+        //   ...additionalData
+        // })
+        userRef.set({
+          'userName' : displayName,
+          'userEmail' : email,
+          'userId' : uid,
+          'userSignedOn' : createdOn,
+          ...additionalData
+        })
+      } catch(err) {
+        console.log("Error occured : " + err.message);
+      }
+    }
+    
+    return userRef;
+  }
+
+  // Google Auth  Provider
 
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.setCustomParameters({ prompt : 'select_account' });
   export const signInWithGoogle = () => auth.signInWithPopup(provider);
 
+  // Initializing Firebase app
+
+  firebase.initializeApp(firebaseConfig);
+
+  // Exporting firebase, firebase auth and firestore modules
+
   export default firebase;
+  export const auth = firebase.auth();
+  export const firestore = firebase.firestore();

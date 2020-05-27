@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage/HomePage.component';
 import ShopPage from './pages/ShopPage/ShopPage.component';
 import Header from './../src/components/Header/Header.component';
 import AuthPage from './../src/pages/AuthPage/AuthPage.component';
-import { auth } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import { Route, Switch } from 'react-router-dom';
 
@@ -18,10 +18,26 @@ class App extends Component {
     }
   }
 
+  unsubscribeAuth = null;
+
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
-      this.setState({currentUser : user}, () => {console.log(this.state.currentUser)})
+    this.unsubscribeAuth = auth.onAuthStateChanged(async user => {
+      if(user) {
+        const userRef = await createUserProfileDocument(user);
+
+        userRef.onSnapshot(snapshot => {
+          this.setState({
+            currentUser : {...snapshot.data()}
+          })
+        }, () => console.log(this.state.currentUser));
+      } else {
+        this.setState({currentUser : user})
+      }
     })
+  }
+
+  componentWillUnmount() {
+    this.unsubscribeAuth();
   }
 
   render() {

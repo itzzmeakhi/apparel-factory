@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { auth } from './../../firebase/firebase.utils';
+
 import FormInput from './../FormInput/FormInput.component';
 import Button from './../Button/Button.component';
 import {signInWithGoogle} from './../../firebase/firebase.utils';
@@ -22,10 +24,23 @@ class SignIn extends Component {
         })
     }
 
-    handleSubmit = event => {
+    handleSubmit = async event => {
         event.preventDefault();
 
-        alert("Form Submitted");
+        const {userEmail, userPassword} = this.state;
+
+        try {
+            await auth.signInWithEmailAndPassword(userEmail, userPassword);
+            this.setState({userEmail: '', userPassword: ''});
+        } catch(error) {
+            console.log(error);
+        }
+
+    
+
+
+
+        // alert("Form Submitted");
     }
 
     render() {
@@ -39,7 +54,7 @@ class SignIn extends Component {
                     <FormInput 
                         type = "email"
                         name = "userEmail"
-                        id = "userEmail"
+                        id = "userSigninEmail"
                         value = {this.state.userEmail} 
                         handleChange = {this.handleChange} 
                         label = "Email" 
@@ -48,7 +63,7 @@ class SignIn extends Component {
                     <FormInput 
                         type = "password"
                         name = "userPassword"
-                        id = "userPassword"
+                        id = "userSigninPassword"
                         value = {this.state.userPassword} 
                         handleChange = {this.handleChange} 
                         label = "Password"

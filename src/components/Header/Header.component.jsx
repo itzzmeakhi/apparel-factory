@@ -8,6 +8,7 @@ import { auth } from './../../firebase/firebase.utils';
 import { ReactComponent as Logo } from './../../assets/images/logo/logo.svg';
 
 const Header = (props) => {
+    
     return(
         <div className = "Header">
             <div className = "ImageContainer">
