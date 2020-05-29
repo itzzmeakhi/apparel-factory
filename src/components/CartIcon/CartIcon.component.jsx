@@ -15,6 +15,13 @@ const CartIcon = (props) => {
     )
 }
 
+// const mapStateToProps = state => {
+//     const cartItemsCount = state.cart.cartItems.reduce()
+//     return {
+//         cartItems
+//     }
+// }
+
 const mapDispatchToProps = dispatch => {
     return {
         toggleCart : () => dispatch(toggleCartHidden())

@@ -1,17 +1,15 @@
 .CartDropdown {
     position: absolute;
-    height: 340px;
     width: 240px;
+    height: 340px;
     display: flex;
     flex-direction: column;
     padding: 20px;
-    border: 1px solid #000;
-    background-color: #fff;
-    top: 80px;
-    right: 20px;
+    border: 1px solid black;
+    background-color: white;
+    top: 90px;
+    right: 40px;
     z-index: 5;
-    align-items: center;
-    justify-content: center;
 }
 
 .CartItems {
@@ -21,7 +19,7 @@
     overflow-y: scroll;
 }
 
-button {
-    margin-top: auto;
+.CartDropdown button {
+    margin: auto;
 }
 

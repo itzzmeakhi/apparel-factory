@@ -33,20 +33,20 @@
     font-size: 18px;
 }
 
-.Name {
+.NameCollectionItem {
     width: 90%;
     margin-bottom: 15px;
 }
 
-.Price {
+.PriceCollectionItem {
     width: 10%;
 }
 
-.Button {
+.CollectionItem Button {
     width: 80%;
     opacity: 0.7;
     position: absolute;
-    top: 255px;
-    display: none;
+    top: 255px; 
 }
-  
+
+
