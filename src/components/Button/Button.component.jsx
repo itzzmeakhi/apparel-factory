@@ -2,10 +2,12 @@ import React from 'react';
 
 import './Button.styles.css';
 
-const Button = ({children, ...otherProps}) => {
+const Button = ({children, inverted, ...otherProps}) => {
     return(
-        <button className = "Button" {...otherProps}>
-            {children}
+        <button 
+            className = {`${inverted ? 'Inverted' : ''} Button`} 
+            {...otherProps}>
+                {children}
         </button>
     )
 }

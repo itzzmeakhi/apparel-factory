@@ -4,6 +4,17 @@
     flex-direction: column;
     height: 350px;
     align-items: center;
+    border: 1px solid #000;
+    position: relative;
+}
+
+.CollectionItem:hover .Image {
+    opacity: 0.8;
+}
+
+.CollectionItem:hover .Button {
+    opacity: 0.85;
+    display: flex;
 }
 
 .Image {
@@ -29,5 +40,13 @@
 
 .Price {
     width: 10%;
+}
+
+.Button {
+    width: 80%;
+    opacity: 0.7;
+    position: absolute;
+    top: 255px;
+    display: none;
 }
   

@@ -6,10 +6,24 @@
     color: #fff;
     outline: none;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .Button:hover {
     background-color: #fff;
     border: 2px solid #000;
     color: #000;
+}
+
+.Button.Inverted {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.Button.Inverted:hover {
+    background-color: black;
+    color: white;
+    border: none;
 }
