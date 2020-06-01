@@ -1,8 +1,10 @@
 import React from 'react';
+import { createStructuredSelector } from 'reselect';
 
 import './CartDropdown.styles.css';
 
 import  { connect } from 'react-redux';
+import { selectCartItems } from './../../redux/cart/cart.selectors';
 import Button from './../Button/Button.component';
 import CartItem from './../CartItem/CartItem.component';
 
@@ -17,10 +19,14 @@ const CartDropdown = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        cartItems : state.cart.cartItems
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         cartItems : selectCartItems(state)
+//     }
+// }
+
+const mapStateToProps = createStructuredSelector({
+    cartItems : selectCartItems
+})
 
 export default connect(mapStateToProps)(CartDropdown);
