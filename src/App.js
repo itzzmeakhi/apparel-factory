@@ -13,6 +13,7 @@ import { setCurrentUser } from './redux/user/user.actions';
 
 import './App.css';
 import { selectCurrentUser } from './redux/user/user.selectors';
+import CheckOutPage from './pages/CheckOutPage/CheckOutPage.component';
 
 
 class App extends Component {
@@ -49,6 +50,7 @@ class App extends Component {
           <Route path = "/auth" render = {
             () => this.props.currentUser ? (<Redirect to = "/" />) : (<AuthPage />)
           } />
+          <Route path = "/checkout" component = {CheckOutPage} />
           <Route path = "/" component = {HomePage} />
         </Switch>
       </div>
