@@ -1,0 +1,4 @@
+.CollectionOverview {
+    display: flex;
+    flex-direction: column;
+}

@@ -31,7 +31,7 @@ const MenuItem = (props) => {
     return(
         // <div className = {`${props.size} MenuItem`} style = {{ background : `url('${props.imageUrl}')` }}>
         
-        <div className = {`${props.size} MenuItem`}>
+        <div className = {`${props.size} MenuItem`} onClick = {() => props.history.push(`${props.linkUrl}`)}>
 
             <div className = "BackgroundImage" style = {{ background : `url('${bgImage}')` }}></div>
 

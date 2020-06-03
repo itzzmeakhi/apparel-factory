@@ -8,6 +8,7 @@
     border: 1px solid #000000;
     margin: 0 7.5px 15px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .MenuItem.large {
