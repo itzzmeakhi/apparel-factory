@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 import './CheckOutPage.styles.css';
 import CheckOutItem from './../../components/CheckOutItem/CheckOutItem.component';
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cart.selectors';
+import StripeButton from './../../components/StripeButton/StripeButton.component';
 
 const CheckOutPage = (props) => {
     return(
@@ -46,6 +47,13 @@ const CheckOutPage = (props) => {
             <div className = "CheckOutPrice">
                 TOTAL PRICE : Rs. {props.totalPrice}
             </div>
+
+            <div className = "TestCredentials">
+                <p> You may use these Test credit card credentials </p>
+                <p> 5555 5555 5555 4444  EXP : 03/2022 CVV: 310 </p>
+            </div>
+
+            <StripeButton price = {props.totalPrice} />
 
             
 
