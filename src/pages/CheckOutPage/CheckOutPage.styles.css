@@ -29,3 +29,12 @@
     margin-left: auto;
     font-size: 36px;
 }
+
+.TestCredentials {
+    color: red;
+    font-size: 22px;
+}
+
+.CheckOutPage button {
+    margin-left: auto;
+}

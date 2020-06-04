@@ -50,7 +50,7 @@ const CheckOutPage = (props) => {
 
             <div className = "TestCredentials">
                 <p> You may use these Test credit card credentials </p>
-                <p> 5555 5555 5555 4444  EXP : 03/2022 CVV: 310 </p>
+                <p> 5555 5555 5555 4444 - EXP : 03/2022 - CVV: 310 </p>
             </div>
 
             <StripeButton price = {props.totalPrice} />
