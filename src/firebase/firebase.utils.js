@@ -56,6 +56,40 @@ const firebaseConfig = {
     return userRef;
   }
 
+  // Storing documents and collections
+
+  export const addCollectionsAndDocuments = async (collectionKey, objectsToAdd) => {
+    const collectionRef = firestore.collection(collectionKey);
+    // console.log(collectionRef);
+
+    const batch = firestore.batch();
+    objectsToAdd.forEach(object => {
+      const newDocRef = collectionRef.doc();
+      batch.set(newDocRef, object);
+    })
+
+    return await batch.commit();
+  }
+
+  export const convertCollectionsSnapshotToMap = collections => {
+    const transformedCollection = collections.docs.map(doc => {
+    const { title, items } = doc.data();
+
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: doc.id,
+      title,
+      items
+      };
+    });
+
+    return transformedCollection.reduce((accumulator, collection) => {
+      //accumulator[collection.title.toLowerCase()] = collection;
+      accumulator.push(collection);
+      return accumulator;
+    }, []);
+  };
+
   // Google Auth  Provider
 
   const provider = new firebase.auth.GoogleAuthProvider();

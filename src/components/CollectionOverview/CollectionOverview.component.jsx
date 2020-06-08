@@ -8,14 +8,16 @@ import { selectShopCollections } from './../../redux/shop/shop.selectors';
 import './CollectionOverview.styles.css';
 
 const CollectionOverview = (props) => {
-    
+    console.log(props.collections);
     const {collections} = props;
     return (
         <div className = "CollectionOverview">
+
             {
-                collections.map(collection => (
-                    <CollectionPreview key = {collection.id} items = {collection.items} title = {collection.title} />
-                ))
+                collections.map(collection => {
+                    console.log(collection);
+                    return <CollectionPreview key = {collection.id} items = {collection.items} title = {collection.title} />
+                })
             }
         </div>
     )

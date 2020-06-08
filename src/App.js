@@ -5,11 +5,12 @@ import HomePage from './pages/HomePage/HomePage.component';
 import ShopPage from './pages/ShopPage/ShopPage.component';
 import Header from './../src/components/Header/Header.component';
 import AuthPage from './../src/pages/AuthPage/AuthPage.component';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument, addCollectionsAndDocuments } from './firebase/firebase.utils';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/user.actions';
+import { selectShopCollections } from './redux/shop/shop.selectors';
 
 import './App.css';
 import { selectCurrentUser } from './redux/user/user.selectors';
@@ -34,6 +35,7 @@ class App extends Component {
       } else {
         this.props.setLoggedInUser(user);
       }
+      // addCollectionsAndDocuments('collections', this.props.collections.map(({title, items}) => ({title, items})));
     })
   }
 
@@ -65,7 +67,8 @@ class App extends Component {
 // }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser : selectCurrentUser
+  currentUser : selectCurrentUser,
+  collections : selectShopCollections
 })
 
 const mapDispatchToProps = dispatch => {
