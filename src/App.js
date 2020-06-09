@@ -5,7 +5,8 @@ import HomePage from './pages/HomePage/HomePage.component';
 import ShopPage from './pages/ShopPage/ShopPage.component';
 import Header from './../src/components/Header/Header.component';
 import AuthPage from './../src/pages/AuthPage/AuthPage.component';
-import { auth, createUserProfileDocument, addCollectionsAndDocuments } from './firebase/firebase.utils';
+// import { auth, createUserProfileDocument, addCollectionsAndDocuments } from './firebase/firebase.utils';
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';

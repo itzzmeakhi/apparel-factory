@@ -1,4 +1,4 @@
-import SHOP_DATA from './ShopData';
+// import SHOP_DATA from './ShopData';
 import ShopActionTypes from './shop.types';
 
 const INITIAL_STATE = {

@@ -9,9 +9,10 @@ import './CollectionPage.styles.css';
 
 const CollectionPage = (props) => {
     const { title, items } = props.collection;
+    console.log(props);
     return(
         <div className = "CollectionPage">
-            <h2 className = "CollectionPageTitle">{ title }</h2>
+            <h2 className = "CollectionPageTitle">{title}</h2>
             <div className = "CollectionPageItems">
                 {items.map(item => (
                     <CollectionItem key = {item.id} item = {item} />
@@ -21,8 +22,11 @@ const CollectionPage = (props) => {
     )
 }
 
-const myStateToProps = (state, ownProps) => ({
-    collection : selectCollection(ownProps.match.params.collectionId)(state)
-})
+const myStateToProps = (state, ownProps) => {
+    // console.log(ownProps.match.params.collectionId);
+    return {
+        collection : selectCollection(ownProps.match.params.collectionId)(state)
+    }
+}
 
 export default connect(myStateToProps)(CollectionPage);
