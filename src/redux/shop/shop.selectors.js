@@ -16,4 +16,14 @@ export const selectShopCollections = createSelector(
 export const selectCollection = collectionURLParam => createSelector(
     [selectShopCollections],
     collections => collections.find(collection => collection.title.toLowerCase() === collectionURLParam.toLowerCase())
-)
+);
+
+export const selectCollectionsFetching = createSelector(
+    [selectShop],
+    shop => shop.isFetching
+);
+
+export const selectCollectionsLoading = createSelector(
+    [selectShop],
+    shop => !!shop.collections
+);
