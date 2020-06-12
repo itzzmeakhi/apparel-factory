@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import { createStructuredSelector } from 'reselect';
-
 // import CollectionOverview from './../../components/CollectionOverview/CollectionOverview.component';
+
 import CollectionOverviewContainer from './../../components/CollectionOverview/CollectionOverview.container';
 import CollectionPageContainer from './../CollectionPage/CollectionPage.container';
+import { fetchCollectionsStart } from './../../redux/shop/shop.actions';
 
 import './ShopPage.styles.css';
 // import CollectionPage from '../CollectionPage/CollectionPage.component';
 // import { selectCollectionsLoading } from './../../redux/shop/shop.selectors';
-
 // import { firestore, convertCollectionsSnapshotToMap } from './../../firebase/firebase.utils';
 //import { updateCollections } from './../../redux/shop/shop.actions';
-import { fetchCollectionsStartAsync } from './../../redux/shop/shop.actions';
 // import WithSpinner from './../../components/WithSpinner/WithSpinner.component';
-
 // const CollectionOverviewWithSpinner = WithSpinner(CollectionOverview);
 // const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
@@ -28,9 +26,11 @@ class ShopPage extends Component {
 //     unsubscribeFromSnapshot = null;
 
     componentDidMount() {
-        const { fetchCollectionsStartAsync } = this.props;
+        const { fetchCollectionsStart } = this.props;
 
-        fetchCollectionsStartAsync();
+        fetchCollectionsStart();
+
+        //fetchCollectionsStartAsync();
         // const { updateCollections } = this.props;
         // const collectionRef = firestore.collection('collections');
 
@@ -75,7 +75,7 @@ class ShopPage extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetchCollectionsStartAsync : () => dispatch(fetchCollectionsStartAsync())
+        fetchCollectionsStart : () => dispatch(fetchCollectionsStart())
     }
 };
 

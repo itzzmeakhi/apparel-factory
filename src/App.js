@@ -6,16 +6,17 @@ import ShopPage from './pages/ShopPage/ShopPage.component';
 import Header from './../src/components/Header/Header.component';
 import AuthPage from './../src/pages/AuthPage/AuthPage.component';
 // import { auth, createUserProfileDocument, addCollectionsAndDocuments } from './firebase/firebase.utils';
-import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+// import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setCurrentUser } from './redux/user/user.actions';
+// import { setCurrentUser } from './redux/user/user.actions';
 import { selectShopCollections } from './redux/shop/shop.selectors';
 
 import './App.css';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import CheckOutPage from './pages/CheckOutPage/CheckOutPage.component';
+import { checkUserSession } from './redux/user/user.actions';
 
 
 class App extends Component {
@@ -23,25 +24,28 @@ class App extends Component {
   unsubscribeAuth = null;
 
   componentDidMount() {
-    this.unsubscribeAuth = auth.onAuthStateChanged(async user => {
-      if(user) {
-        const userRef = await createUserProfileDocument(user);
+    const { checkUserSession } = this.props;
 
-        userRef.onSnapshot(snapshot => {
-          // this.setState({
-          //   currentUser : {...snapshot.data()}
-          // })
-          this.props.setLoggedInUser(snapshot.data());
-        });
-      } else {
-        this.props.setLoggedInUser(user);
-      }
-      // addCollectionsAndDocuments('collections', this.props.collections.map(({title, items}) => ({title, items})));
-    })
+    checkUserSession();
+    // this.unsubscribeAuth = auth.onAuthStateChanged(async user => {
+    //   if(user) {
+    //     const userRef = await createUserProfileDocument(user);
+
+    //     userRef.onSnapshot(snapshot => {
+    //       // this.setState({
+    //       //   currentUser : {...snapshot.data()}
+    //       // })
+    //       this.props.setLoggedInUser(snapshot.data());
+    //     });
+    //   } else {
+    //     this.props.setLoggedInUser(user);
+    //   }
+    //   // addCollectionsAndDocuments('collections', this.props.collections.map(({title, items}) => ({title, items})));
+    // })
   }
 
   componentWillUnmount() {
-    this.unsubscribeAuth();
+    // this.unsubscribeAuth();
   }
 
   render() {
@@ -74,7 +78,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch => {
   return {
-    setLoggedInUser : user => dispatch(setCurrentUser(user))
+    checkUserSession : () => dispatch(checkUserSession())
   }
 }
 

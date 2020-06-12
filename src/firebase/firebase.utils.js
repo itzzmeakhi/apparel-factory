@@ -92,9 +92,22 @@ const firebaseConfig = {
 
   // Google Auth  Provider
 
-  const provider = new firebase.auth.GoogleAuthProvider();
-  provider.setCustomParameters({ prompt : 'select_account' });
-  export const signInWithGoogle = () => auth.signInWithPopup(provider);
+  export const googleProvider = new firebase.auth.GoogleAuthProvider();
+  googleProvider.setCustomParameters({ prompt : 'select_account' });
+  export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
+
+  // Get Current User
+
+  export const getCurrentUser = () => {
+    return new Promise((resolve, reject) => {
+      const unsubsribe = auth.onAuthStateChanged(userAuth => {
+        unsubsribe();
+        resolve(userAuth);
+      }, reject)
+    })
+  }
+
+  
 
   // Initializing Firebase app
 
