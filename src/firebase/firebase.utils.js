@@ -17,6 +17,7 @@ const firebaseConfig = {
   // Storing User signedUp date in firestore
 
   export const createUserProfileDocument = async(authData, additionalData) => {
+    // console.log(authData);
     if(!authData) return;
 
     //console.log(firestore.doc('users/122iidsidnm'));

@@ -8,7 +8,9 @@ import {
     emailSignInSuccess, 
     emailSignInFailure,
     signOutSuccess,
-    signOutFailure } from './user.actions';
+    signOutFailure,
+    signUpSuccess,
+    signUpFailure } from './user.actions';
 
 export function* signInWithGoogle() {
     try {
@@ -54,6 +56,26 @@ export function* signOut() {
     }
 }
 
+export function* signUpStart(userCredentials) {
+    try {
+        const { userName, userEmail, userPassword } = userCredentials.payload;
+        const {user} = yield auth.createUserWithEmailAndPassword(userEmail, userPassword);
+        yield put(signUpSuccess({uid : user.uid, email : userEmail, displayName : userName }));
+    } catch(error) {
+        yield put(signUpFailure(error));
+    }
+}
+
+export function* signInAfterSignUp(userAuth) {
+    try {
+        const userRef = yield call(createUserProfileDocument, userAuth.payload);
+        const userSnapshot = yield userRef.get();
+        yield put(emailSignInSuccess(userSnapshot.data()));
+    } catch(error) {
+        yield put(emailSignInFailure(error.message));
+    }
+}
+
 export function* onGoogleSignInStart() {
     yield takeLatest(UserActionTypes.GOOGLE_SIGN_IN_START, signInWithGoogle)
 }
@@ -70,11 +92,21 @@ export function* onSignOut() {
     yield takeLatest(UserActionTypes.SIGN_OUT_START, signOut)
 }
 
+export function* onSignUpStart() {
+    yield takeLatest(UserActionTypes.SIGN_UP_START, signUpStart);
+}
+
+export function* onSignUpSuccess() {
+    yield takeLatest(UserActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp)
+}
+
 export function* userSagas() {
     yield all([
         call(onGoogleSignInStart),
         call(onEmailSignInStart),
         call(onCheckUserSession),
-        call(onSignOut)
+        call(onSignOut),
+        call(onSignUpStart),
+        call(onSignUpSuccess)
     ])
 }

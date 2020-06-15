@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import './SignUp.styles.css';
 
-import { auth, createUserProfileDocument } from './../../firebase/firebase.utils';
+// import { auth, createUserProfileDocument } from './../../firebase/firebase.utils';
 
 import FormInput from './../FormInput/FormInput.component';
 import Button from './../Button/Button.component';
+import { signUpStart } from './../../redux/user/user.actions';
 
 class SignUp extends Component {
     constructor(props) {
@@ -30,6 +32,7 @@ class SignUp extends Component {
 
         console.log("FORM SUBMITTED");
 
+        const { signUpStart } = this.props;
         const { userName, userEmail, userPassword, confirmPassword } = this.state;
 
         if(userPassword !== confirmPassword) {
@@ -37,20 +40,24 @@ class SignUp extends Component {
             return;
         }
 
-        try {
-            const {user} = await auth.createUserWithEmailAndPassword(userEmail, userPassword);
- 
-            await createUserProfileDocument({
-                'displayName' : userName,
-                'uid' : user.uid,
-                'email' : userEmail
-            });
-            //createUserProfileDocument({user.})
-            this.setState({userName: '', userEmail: '', userPassword: '', confirmPassword: ''});
+        signUpStart({userName, userEmail, userPassword});
 
-        } catch(error) {
-            console.log("An error occurred!"+error);
-        }
+        
+
+        // try {
+        //     const {user} = await auth.createUserWithEmailAndPassword(userEmail, userPassword);
+ 
+        //     await createUserProfileDocument({
+        //         'displayName' : userName,
+        //         'uid' : user.uid,
+        //         'email' : userEmail
+        //     });
+        //     //createUserProfileDocument({user.})
+        //     this.setState({userName: '', userEmail: '', userPassword: '', confirmPassword: ''});
+
+        // } catch(error) {
+        //     console.log("An error occurred!"+error);
+        // }
     }
 
     render() {
@@ -112,4 +119,10 @@ class SignUp extends Component {
     }
 }
 
-export default SignUp; 
+const mapDispatchToProps = dispatch => {
+    return {
+        signUpStart : userCredentials => dispatch(signUpStart(userCredentials))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(SignUp); 
