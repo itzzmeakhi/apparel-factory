@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { createStructuredSelector } from 'reselect';
 
 import HomePage from './pages/HomePage/HomePage.component';
@@ -19,12 +19,12 @@ import CheckOutPage from './pages/CheckOutPage/CheckOutPage.component';
 import { checkUserSession } from './redux/user/user.actions';
 
 
-class App extends Component {
+const App = ({checkUserSession, currentUser}) =>  {
 
-  unsubscribeAuth = null;
+  //unsubscribeAuth = null;
 
-  componentDidMount() {
-    const { checkUserSession } = this.props;
+  useEffect(() =>  {
+    // const { checkUserSession } = this.props;
 
     checkUserSession();
     // this.unsubscribeAuth = auth.onAuthStateChanged(async user => {
@@ -42,28 +42,30 @@ class App extends Component {
     //   }
     //   // addCollectionsAndDocuments('collections', this.props.collections.map(({title, items}) => ({title, items})));
     // })
-  }
+  }, [checkUserSession]);
 
-  componentWillUnmount() {
-    // this.unsubscribeAuth();
-  }
+  // componentWillUnmount() {
+  //   // this.unsubscribeAuth();
+  // }
 
-  render() {
-    return (
-      <div className="App">
-        <Header />
-        <Switch>
-          <Route path = "/shop" component = {ShopPage} />
-          <Route path = "/auth" render = {
-            () => this.props.currentUser ? (<Redirect to = "/" />) : (<AuthPage />)
-          } />
-          <Route path = "/checkout" component = {CheckOutPage} />
-          <Route path = "/" component = {HomePage} />
-        </Switch>
-      </div>
-    );
-  }
+  
+  return (
+    <div className="App">
+      <Header />
+      <Switch>
+        <Route path = "/shop" component = {ShopPage} />
+        <Route path = "/auth" render = {
+          () => currentUser ? (<Redirect to = "/" />) : (<AuthPage />)
+        } />
+        <Route path = "/checkout" component = {CheckOutPage} />
+        <Route path = "/" component = {HomePage} />
+      </Switch>
+    </div>
+  );
+
 }
+  
+
 
 // const mapStateToProps = state => {
 //   return {
